@@ -2,6 +2,15 @@
 
 #programme qui affiche toutes les differentes combinaisons possibles de trois chiffres dans l'ordre croissant, dans l'ordre croissant qui comporte exclusivement des chiffres differents les uns des autres
 
+#fonction utile qui mesure la longueur d'une array ou string comme .length()
+def longueurArgument(mot)
+        i = 0
+        while mot[i]
+                i += 1
+        end
+        return i
+end
+
 #fonction qui compare deux chaines de caracteres pour savoir si les 3 caracteres a la fois sont differents entre les deux chaines
 def unique(array, new)
 	sortie = "erreur"
@@ -18,9 +27,9 @@ sortie = ""
 array = [] #pour verifier si c'est bien unique
 while i <= 999
 	#mettre la meme longueur de la chaine de caractere a 3
-	if i.to_s.length() == 1
+	if longueurArgument(i.to_s) == 1
 		new = "00" + i.to_s
-	elsif i.to_s.length() == 2 
+	elsif longueurArgument(i.to_s) == 2 
 		new = "0" + i.to_s
 	else	
 		new = i.to_s
@@ -28,7 +37,7 @@ while i <= 999
 	faux = 0
 	if new[0] != new[1] && new[1] != new[2] && new[0] != new[2] #test si les caractees de la chaines sont tous differents 
 		a = 0 
-		while a <= array.length() - 1 && faux == 0
+		while a <= longueurArgument(array) - 1 && faux == 0
 			if unique(array[a], new) == "erreur"
 				faux = 1
 			end
