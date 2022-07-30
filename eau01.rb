@@ -2,30 +2,22 @@
 
 #programme qui affiche toutes les differentes combinaisons possibles de trois chiffres dans l'ordre croissant, dans l'ordre croissant qui comporte exclusivement des chiffres differents les uns des autres
 
-
+#fonction qui compare deux chaines de caracteres pour savoir si les 3 caracteres a la fois sont differents entre les deux chaines
 def unique(array, new)
-	if array[0] = new[0] && array[1] = new[1] && array[2] = new[2]
-		return false
-	elsif array[0] = new[0] && array[1] = new[2] && array[2] = new[1]
-		return false
-	elsif array[0] = new[1] && array[1] = new[0] && array[2] = new[2]
-		return false
-	elsif array[0] = new[1] && array[1] = new[2] && array[2] = new[0]
-		return false
-	elsif array[0] = new[2] && array[1] = new[0] && array[2] = new[1]
-		return false
-	elsif array[0] = new[2] && array[1] = new[1] && array[2] = new[0]
-		return false
-	else
-		return true
+	sortie = "erreur"
+	if !(array[0] == new[0] && array[1] == new[1] && array[2] == new[2]) || !(array[0] == new[0] && array[1] == new[2] && array[2] == new[1]) || !(array[0] == new[1] && array[1] == new[0] && array[2] == new[2]) || !(array[0] == new[1] && array[1] == new[2] && array[2] == new[0]) || !(array[0] == new[2] && array[1] == new[0] && array[2] == new[1]) || !(array[0] == new[2] && array[1] == new[1] && array[2] == new[0])
+		sortie = "ok"
 	end
+	return sortie
 end
 
+#coeur du programme
 i = 0
 new = ""
 sortie = ""
-array = []
+array = [] #pour verifier si c'est bien unique
 while i <= 999
+	#mettre la meme longueur de la chaine de caractere a 3
 	if i.to_s.length() == 1
 		new = "00" + i.to_s
 	elsif i.to_s.length() == 2 
@@ -33,17 +25,21 @@ while i <= 999
 	else	
 		new = i.to_s
 	end
-	b = 0
-	if new[0] != new[1] && new[1] != new[2] && new[0] != new[2] 
-		array[b] = new
+	faux = 0
+	if new[0] != new[1] && new[1] != new[2] && new[0] != new[2] #test si les caractees de la chaines sont tous differents 
 		a = 0 
-		while a <= array.length() - 1
-			if unique(array[a], new) == true
-				sortie = sortie + new + ", "
+		while a <= array.length() - 1 && faux == 0
+			if unique(array[a], new) == "erreur"
+				faux = 1
 			end
+			a = a + 1
 		end
-		b = b + 1
+		if faux == 0
+			sortie = sortie + new + ", "
+			array.push(new)
+		end
 	end
 	i = i + 1
-end 
+end
+sortie = sortie[0...-2] 
 puts sortie
