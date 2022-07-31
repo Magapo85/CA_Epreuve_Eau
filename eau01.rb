@@ -14,7 +14,7 @@ end
 #fonction qui compare deux chaines de caracteres pour savoir si les 3 caracteres a la fois sont differents entre les deux chaines
 def unique(array, new)
 	sortie = "erreur"
-	if !(array[0] == new[0] && array[1] == new[1] && array[2] == new[2]) || !(array[0] == new[0] && array[1] == new[2] && array[2] == new[1]) || !(array[0] == new[1] && array[1] == new[0] && array[2] == new[2]) || !(array[0] == new[1] && array[1] == new[2] && array[2] == new[0]) || !(array[0] == new[2] && array[1] == new[0] && array[2] == new[1]) || !(array[0] == new[2] && array[1] == new[1] && array[2] == new[0])
+	if !(array[0] == new[0] && array[1] == new[1] && array[2] == new[2]) && !(array[0] == new[0] && array[1] == new[2] && array[2] == new[1]) && !(array[0] == new[1] && array[1] == new[0] && array[2] == new[2]) && !(array[0] == new[1] && array[1] == new[2] && array[2] == new[0]) && !(array[0] == new[2] && array[1] == new[0] && array[2] == new[1]) && !(array[0] == new[2] && array[1] == new[1] && array[2] == new[0])
 		sortie = "ok"
 	end
 	return sortie

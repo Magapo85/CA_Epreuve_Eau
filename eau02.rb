@@ -24,7 +24,7 @@ end
 i = 0
 new = ""
 sortie = ""
-array = []
+array = [] # array de stockage pour comparaison avec unique (combinaison des deux nombres)
 while i <= 99
         if longueurArgument(i.to_s) == 1
                 new = "0" + i.to_s

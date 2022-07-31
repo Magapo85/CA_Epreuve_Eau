@@ -11,6 +11,7 @@ def nombreArgument
         return i
 end
 
+#coeur du programme
 i = nombreArgument() - 1
 while i >= 0
 	puts ARGV[i]
