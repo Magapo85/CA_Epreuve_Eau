@@ -26,7 +26,7 @@ def trouverDansString(chaine, caracs)
         lgchaine = longueurArgument(chaine)
 	lgcaracs = longueurArgument(caracs)
         i = 0
-        while i < lgchaine - lgcaracs && sortie == "false"
+        while i <= lgchaine - lgcaracs && sortie == "false"
                 if chaine[i,lgcaracs] == caracs
                         sortie = "true"
                         index = i
@@ -39,5 +39,5 @@ end
 if nombreArgument() != 2
 	puts "error"
 else
-	puts trouverDansString(ARGV[0], ARGV[1])
+	puts trouverDansString(ARGV[0], ARGV[1])[1]
 end
