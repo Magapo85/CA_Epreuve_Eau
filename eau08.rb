@@ -23,7 +23,6 @@ end
 #fonction pour trouver un caractere dans un array, comme .index()
 def trouverDansArray(carac, array1, array2, sepMot)
         sortie = 0
-        index = longueurArgument(array1)
 	if longueurArgument(carac) == 1
 		i = 0
 		while i < longueurArgument(array1) && sortie == 0
@@ -34,32 +33,43 @@ def trouverDansArray(carac, array1, array2, sepMot)
                 	i = i + 1
 		end
 	else	
-		i = 0
-        	while i < longueurArgument(sepMot) && sortie == 0
-			if carac[0] == sepMot[i]
-				b = 0 
-				while b < longueurArgument(array1) && sortie == 0
-					if array1[b] == carac[1] || array2[b] == carac[1]
+		b = 0
+                while b < longueurArgument(array1) && sortie == 0
+                	if array1[b] == carac[1] || array2[b] == carac[1]
+				i = 0
+        			while i < longueurArgument(sepMot) && sortie == 0
+					if carac[0] == sepMot[i]
                         			sortie = 1
                         			index = b
 					end
-					b = b + 1
+					i = i + 1
 				end
-                	end
-                	i = i + 1
-		end
+				if sortie == 0
+					sortie = 2
+					index = b
+				end
+               		end
+                	b = b + 1
+		end	
         end
         return index, sortie
 end
 
+#fonction utile pour test la lettre et rediriger vers une minuscule ou majuscule
 def trouverLettre(carac)
         maj = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
         min = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 	sepMot = [' ','		','\n'] #['\r','\s','\b','\n']
         i, pastrouve = trouverDansArray(carac, maj, min, sepMot)
         if pastrouve == 0
-                new = carac[0]
-        else
+                if longueurArgument(carac) == 2 
+			new = carac[1]
+		else
+			new = carac[0]
+		end
+        elsif pastrouve == 2
+		new = min[i]
+	else
                 new = maj[i]
         end
         return new
@@ -77,7 +87,8 @@ def putMaj(mot)
         return sortie
 end
 
-if nombreArgument != 1 || (ARGV[0] != "0" && ARGV[0].to_i != 0)
+#coeur du programme
+if nombreArgument != 1 || (ARGV[0] != "0" && ARGV[0].to_i != 0 && ARGV[0] == (ARGV[0].to_i).to_s) || ARGV[0] == "0"
 	puts "error"
 else
 	puts putMaj(ARGV[0])
