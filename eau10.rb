@@ -44,12 +44,14 @@ def fauxEntier(nombre)
 end
 
 #coeur du programme
-if nombreArgument != 1 || (ARGV[0] != "0" && ARGV[0].to_i <= 0) || fauxEntier(ARGV[0]) == "erreur"
-	puts "-1" #erreur
-
-#coeur du programme
-if nombreArgument != 2 || (ARGV[0] != "0" && ARGV[0] == (ARGV[0].to_i).to_s) || ARGV[0] == "0"
-        puts "true"
+if nombreArgument != 2 || ARGV[0] != (ARGV[0].to_i).to_s || fauxEntier(ARGV[0]) == "erreur" || fauxEntier(ARGV[1]) == "erreur"
+        puts "error"
 else
-        puts "false"
+	sortie = ARGV[0]
+	debut = ARGV[0].to_i + 1
+	while debut < ARGV[1].to_i
+		sortie = sortie + " " + debut.to_s
+		debut = debut + 1 
+	end
+        puts sortie
 end
