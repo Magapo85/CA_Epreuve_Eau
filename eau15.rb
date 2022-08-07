@@ -39,22 +39,17 @@ end
 def myASCIISort(array)
         n = longueurArgument(array)
 	i = 0
-        while i <= n - 2
-		min = i
+        while i < n - 1
                 j = i + 1
-                while j <= n - 1
-                        if array[j] < array[min]
-				min = j
+                while j < n
+                        if array[i] > array[j]
+				temp = array[i]
+                         	array[i] = array[j]
+                         	array[j] = temp
                         end
 			#puts displayArray(array)
                         j = j + 1
                 end
-                if min != i
-			 temp = array[min]
-                         array[min] = array[i]
-                         array[i] = temp
-                end
-                #puts displayArray(array)
 		i = i + 1
         end
         return array #new_array
@@ -64,7 +59,7 @@ def displayArray(array)
         sortie = ""
         i = 0
         while array[i]
-                sortie = sortie + (array[i].to_f).to_s + " "
+                sortie = sortie + array[i] + " "
                 i = i + 1
         end
         sortie = sortie[0...-1]
@@ -78,7 +73,7 @@ else
         array = []
         i = 0
         while ARGV[i]
-                array.push(ARGV[i].to_d)
+                array.push(ARGV[i])
                 i = i + 1
         end
         puts displayArray(myASCIISort(array))
