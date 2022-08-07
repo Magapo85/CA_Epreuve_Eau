@@ -1,10 +1,7 @@
 #!/usr/bin/env ruby
 
-#programme qui trie une liste de nombres. Votre programme devra implementer l'algorithme du tri par selection.afficher error sinon
-#https://fr.wikipedia.org/wiki/Tri_par_s%C3%A9lection
-
-require 'bigdecimal'
-require 'bigdecimal/util' #to_d
+#programme qui trie les elements donnes en argument par ordre ASCII.afficher error sinon
+#https://en.wikipedia.org/wiki/ASCII
 
 #fonction utile qui trouve le nombre d'argument comme .length()
 def nombreArgument
@@ -38,21 +35,8 @@ def trouverDansArray(carac, array)
         return index, sortie
 end
 
-#fonction utile qui test si l'argument (nombre suppose entier) contient . ou , avant conversion et calcul
-def fauxFloatEntier()
-        i = 0
-        sortie = "ok"
-        while ARGV[i] && sortie == "ok"
-                if trouverDansArray(",", ARGV[i])[1] == "erreur" || (ARGV[i] != (ARGV[i].to_i).to_s && ARGV[i] != (ARGV[i].to_f).to_s)
-                        sortie = "erreur"
-                end
-                i = i + 1
-        end
-        return sortie
-end
-
-#fonction utile qui realise le trie suivant la methode par selection
-def mySelectSort(array)
+#fonction utile qui realise le trie suivant l'orde ASCII
+def myASCIISort(array)
         n = longueurArgument(array)
 	i = 0
         while i <= n - 2
@@ -88,7 +72,7 @@ def displayArray(array)
 end
 
 #coeur du programme
-if nombreArgument <= 1 || fauxFloatEntier() == "erreur"
+if nombreArgument <= 1
         puts "error"
 else
         array = []
@@ -97,6 +81,5 @@ else
                 array.push(ARGV[i].to_d)
                 i = i + 1
         end
-        puts displayArray(mySelectSort(array))
+        puts displayArray(myASCIISort(array))
 end
-
