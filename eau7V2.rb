@@ -20,52 +20,37 @@ def longueurArgument(mot)
         return i
 end
 
-#fonction pour trouver un caractere dans un array, comme .index()
-def trouverDansArray(carac, array1, array2)
-        sortie = 0
-        index = longueurArgument(array1)
-        i = 0
-        while i < longueurArgument(array1) && sortie == 0
-                if array1[i] == carac || array2[i] == carac
-                        sortie = 1
-                        index = i
-                end
-                i = i + 1
-        end
-        return index, sortie
-end
-
-def trouverLettre(carac, etat)
-	maj = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-	min = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'] 
-	i, pastrouve = trouverDansArray(carac, maj, min) 
-	if pastrouve == 0 
-		new = carac
-	else
-		if etat == 0
-			new = maj[i] 
-			etat = 1
-		else
-		        new = min[i]
-                        etat = 0
-		end
-	end
-	return new, etat
-end
-
 def atlMajMin(mot)
-	i = 0
-	etat = 0 #0=maj;1=min
+	maj = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+	min = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+	etat = 0 #0=maj;1=min en premier
 	sortie = ""
-	while mot[i]
-		new, etat = trouverLettre(mot[i], etat)
+	for carac in 0...longueurArgument(mot)
+		trouvee = 0
+		i = 0
+		for caracArr in 0...longueurArgument(maj)
+			if trouvee == 0
+				if maj[caracArr] == mot[carac] || min[caracArr] == mot[carac]
+					if etat == 0
+						new = maj[caracArr]
+						etat = 1
+					else
+						new = min[caracArr]
+						etat = 0
+					end
+					trouvee = 1
+				else
+					new = mot[carac]	
+				end
+			end
+			i = i + 1
+		end
 		sortie = sortie + new
-		i = i + 1
 	end
 	return sortie
 end
 
-if nombreArgument != 1 || (ARGV[0] != "0" && ARGV[0].to_i != 0)
+if nombreArgument != 1 
         puts "error"
 else
 	puts atlMajMin(ARGV[0])
