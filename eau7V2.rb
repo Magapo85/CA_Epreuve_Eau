@@ -25,9 +25,9 @@ def atlMajMin(mot)
 	min = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 	etat = 0 #0=maj;1=min en premier
 	sortie = ""
+	new = ""
 	for carac in 0...longueurArgument(mot)
 		trouvee = 0
-		i = 0
 		for caracArr in 0...longueurArgument(maj)
 			if trouvee == 0
 				if maj[caracArr] == mot[carac] || min[caracArr] == mot[carac]
@@ -43,7 +43,6 @@ def atlMajMin(mot)
 					new = mot[carac]	
 				end
 			end
-			i = i + 1
 		end
 		sortie = sortie + new
 	end
