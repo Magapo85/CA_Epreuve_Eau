@@ -25,36 +25,34 @@ def putMaj(mot)
 	min = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 	sepMot = [' ','         ','\n'] #['\r','\s','\b','\n']
 	sortie = ""
-	for carac in 1...longueurArgument(mot)
-		for caracSep in 0...longueurArgument(sepMot)
-			rien = 0
-			if mot[carac-1] == sepMot[caracSep] && rien == 0
-				trouvee = 0
-				for caracArr in 0...longueurArgument(maj)
-					if trouvee == 0
-						if maj[caracArr] == mot[carac] || min[caracArr] == mot[carac]
-							new = maj[caracArr]
-²²²²²²²²²²²²²²²²²²²²²²²²²²²²trouvee = 1
-						else
-							new = mot[carac]
-						end	
-					end
+	new = ""
+	for carac in 0...longueurArgument(mot)
+		sep = 0
+		if carac == 0
+			sep = 1
+		else
+			for caracSep in 0...longueurArgument(sepMot)
+				if mot[carac-1] == sepMot[caracSep]
+					sep = 1
+					break
 				end
-				rien = 1
 			end
-			if rien == 0
-				trouvee = 0
-                                for caracArr in 0...longueurArgument(maj)
-                                        if trouvee == 0
-                                                if maj[caracArr] == mot[carac] || min[caracArr] == mot[carac]
-                                                        new = min[caracArr]
-                                                        trouvee = 1
-                                                else
-                                                        new = mot[carac]
-                                                end
-                                        end
-                                end
+		end
+		index = -1
+		for caracArr in 0...longueurArgument(maj)
+			if maj[caracArr] == mot[carac] || min[caracArr] == mot[carac]
+				index = caracArr
+				break
 			end
+		end
+		if index > -1
+			if sep == 1
+				new = maj[index]
+			else
+				new = min[index]
+			end
+		else
+			new = mot[carac]
 		end
 		sortie = sortie + new
 	end
